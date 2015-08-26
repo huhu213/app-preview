@@ -13,7 +13,7 @@ var l = tempUrl.length;
 var tempid = tempUrl.substring(tempUrl.lastIndexOf('=')+1, l);
 paramJson.contentJson.videoId = tempid;
 
-
+//获取视频数据
 $.ajax({
 	type:"get",
 	dataType: "json",
@@ -34,4 +34,19 @@ $.ajax({
 		$("#video_teacher").html(info.teacherName);		
 	}
 });
+
+//通过浏览器判断客户端OS
+var u = navigator.userAgent, app = navigator.appVersion;
+var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Linux') > -1; //android终端或者uc浏览器
+var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+
+var urlAndroid = "http://124.202.164.14/files/1193000006BE8456/dd.myapp.com/16891/29A48CE451EF9B12A6E600EE0FC095C6.apk";
+var urliOS = "https://itunes.apple.com/cn/app/kai-xin-xiao-xiao-le/id791532221?mt=8&v0=WWW-GCCN-ITSTOP100-FREEAPPS&l=&ign-mpt=uo%3D4";
+
+if(isAndroid == true){
+	$("#downloadUrl").attr("href", urlAndroid);
+}
+else if(isiOS == true){
+	$("#downloadUrl").attr("href", urliOS);
+}
 
